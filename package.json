@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "api": "nodemon api/api.js",
-    "start": "npm run api"
+    "start": "node api/api.js"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
