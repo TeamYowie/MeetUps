@@ -21,7 +21,7 @@ api.get('/', function(request, response){
   response.send('Welcome to the API!');
 });
 
-let port = process.env.PORT || 8080;
+let port = process.env.PORT || 3000;
 
 api.listen(port, function() {
         console.log('Server is running at http://localhost:' + port);
