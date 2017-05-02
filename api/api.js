@@ -5,7 +5,7 @@ const express = require("express"),
         bodyParser = require("body-parser"),
         lowdb = require('lowdb');
 
-let db = lowdb("./api/data/data.json");
+let db = lowdb("./data/data.json");
 db._.mixin(require("underscore-db"));
 
 let api = express();
