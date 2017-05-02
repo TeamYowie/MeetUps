@@ -1,8 +1,8 @@
-const chars = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()_+-=',
+const chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()_+-=",
   length = 60;
 
 function get(id) {
-  var authKey = '';
+  var authKey = "";
   authKey += id;
   while (authKey.length < length) {
     var index = (Math.random() * chars.length) | 0;
@@ -12,5 +12,5 @@ function get(id) {
 }
 
 module.exports = {
-  get:get
+  get
 };
