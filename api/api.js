@@ -1,7 +1,6 @@
 "use strict";
 
 const express = require("express"),
-        logger = require("morgan"),
         bodyParser = require("body-parser"),
         lowdb = require('lowdb');
 
@@ -9,7 +8,6 @@ let db = lowdb("./data/data.json");
 db._.mixin(require("underscore-db"));
 
 let api = express();
-api.use(logger("dev"));
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: false }));
 //api.use('/libs', express.static('./../node_modules'));
