@@ -12,7 +12,7 @@ let api = express();
 api.use(logger("dev"));
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: false }));
-api.use('/libs', express.static('./../node_modules'));
+//api.use('/libs', express.static('./../node_modules'));
 
 let usersController = require("./controllers/users")(db);
 api.post("/api/auth", usersController.post);
