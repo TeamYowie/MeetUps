@@ -7,17 +7,17 @@ module.exports = (db) => {
   const post = (req, res) => {
     let reqUser = req.body;
     if (!reqUser || typeof reqUser.username !== "string" || typeof reqUser.passHash !== "string") {
-      return res.status(400)
-        .json("Invalid username or password");
+      return res.status(422)
+        .send("Invalid username or password");
     }
 
     let duplicateUser = db("users").find({
-      usernameToLower: reqUser.username.toLowerCase()
+      usernameLower: reqUser.username.toLowerCase()
     });
-
+    
     if (duplicateUser) {
       return res.status(409)
-        .json('Duplicated user');
+        .send('Duplicated user');
     }
 
     reqUser.usernameLower = reqUser.username.toLowerCase();
