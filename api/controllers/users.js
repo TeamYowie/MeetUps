@@ -1,14 +1,13 @@
 "use strict";
 const authKeyGenerator = require("../utils/auth-key-generator");
+const idGenerator = require("../utils/id-generator");
 
-// changed previous post to put
 module.exports = (db) => {
   const post = (req, res) => {
     let reqUser = req.body;
     if (!reqUser || typeof reqUser.username !== "string" || typeof reqUser.passHash !== "string") {
-      res.status(400)
+      return res.status(400)
         .json("Invalid username or password");
-      return;
     }
 
     let duplicateUser = db("users").find({
@@ -16,12 +15,13 @@ module.exports = (db) => {
     });
 
     if (duplicateUser) {
-      res.status(409)
+      return res.status(409)
         .json('Duplicated user');
-      return;
     }
 
     reqUser.usernameLower = reqUser.username.toLowerCase();
+    reqUser.id = idGenerator.get();
+    db("users").insert(reqUser);
 
     return res.status(201).send({
       result: {
@@ -29,6 +29,7 @@ module.exports = (db) => {
       }
     });
   };
+
   const put = (req, res) => {
     let reqUser = req.body;
 
@@ -54,7 +55,7 @@ module.exports = (db) => {
   };
 
   return {
-    post: post,
-    put: put
+    post,
+    put
   };
 };
