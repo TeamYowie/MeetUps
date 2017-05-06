@@ -15,7 +15,12 @@ api.get("/", function(request, response){
 });
 
 let usersController = require("./controllers/users")(db);
-api.post("/api/auth", usersController.post);
+
+//changed from post to put request
+api.put("/api/auth", usersController.put);
+
+api.post("/api/users", usersController.post);
+
 
 let port = process.env.PORT || 3000;
 
