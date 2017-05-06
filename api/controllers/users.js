@@ -1,6 +1,7 @@
 "use strict";
-const authKeyGenerator = require("../utils/auth-key-generator");
-const idGenerator = require("../utils/id-generator");
+const AUTH_KEY_HEADER_NAME = "x-auth-key";
+const authKeyGenerator = require("./../utils/auth-key-generator")();
+const idGenerator = require("./../utils/id-generator")();
 
 module.exports = (db) => {
   const post = (req, res) => {
@@ -30,7 +31,7 @@ module.exports = (db) => {
     });
   };
 
-  const put = (req, res) => {
+  const auth = (req, res) => {
     let reqUser = req.body;
 
     let user = db("users").find({
@@ -54,8 +55,27 @@ module.exports = (db) => {
     });
   };
 
+  const logout = (req, res) => {
+    let reqUser = req.body;
+    let authKey = req.headers[AUTH_KEY_HEADER_NAME];
+
+    let user = db("users").find({
+      usernameLower: reqUser.username.toLowerCase()
+    });
+
+    if (!user || user.authKey !== authKey) {
+      return res.status(422)
+        .send("Invalid credentials.");
+    }
+    
+    user.authKey = null;
+
+    return res.status(200).send();
+  };
+
   return {
     post,
-    put
+    auth,
+    logout
   };
 };

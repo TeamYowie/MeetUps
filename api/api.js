@@ -16,9 +16,8 @@ api.get("/", function(request, response){
 
 let usersController = require("./controllers/users")(db);
 
-//changed from post to put request
-api.put("/api/auth", usersController.put);
-
+api.post("/api/auth", usersController.auth);
+api.post("/api/logout", usersController.logout);
 api.post("/api/users", usersController.post);
 
 
