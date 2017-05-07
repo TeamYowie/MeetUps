@@ -8,7 +8,7 @@ module.exports = (db) => {
     let reqUser = req.body;
     if (!reqUser || typeof reqUser.username !== "string" || typeof reqUser.passHash !== "string") {
       return res.status(422)
-        .send("Invalid username or password");
+        .send("Invalid username or password!");
     }
 
     let duplicateUser = db("users").find({
@@ -17,18 +17,15 @@ module.exports = (db) => {
 
     if (duplicateUser) {
       return res.status(409)
-        .send('Duplicated user');
+        .send('Duplicated user!');
     }
 
     reqUser.usernameLower = reqUser.username.toLowerCase();
     reqUser.id = idGenerator.get();
     db("users").insert(reqUser);
 
-    return res.status(201).send({
-      result: {
-        username: reqUser.username,
-      }
-    });
+    return res.status(201)
+      .send("User created!");
   };
 
   const auth = (req, res) => {
@@ -50,7 +47,8 @@ module.exports = (db) => {
     return res.status(200).send({
       result: {
         username: user.username,
-        authKey: user.authKey
+        authKey: user.authKey,
+        profileImage: user.profileImage
       }
     });
   };

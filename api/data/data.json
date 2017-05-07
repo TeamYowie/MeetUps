@@ -1,11 +1,30 @@
 {
   "users": [
     {
-      "username": "TestUser",
-      "passHash": "00fcdde26dd77af7858a52e3913e6f3330a32b3121a61bce915cc6145fc44453",
-      "usernameLower": "testuser",
-      "authKey": "undefined+tusvd@Kh_@ixbA*Q$fvLmq(CJJmu*DN%E^i@OUr&eoAJn!*uak",
-      "id": "d69707b4-d06d-42ac-bc10-1dde5aaafcf7"
+      "username": "TestUser1",
+      "passHash": "fbfb386efea67e816f2dda0a8c94a98eb203757aebb3f55f183755a192d44467",
+      "email": "a@a.com",
+      "profileImage": "default-profile-picture.svg",
+      "usernameLower": "testuser1",
+      "id": "d69707b4-d06d-42ac-bc10-1dde5aaafcf7",
+      "authKey": null
+    },
+    {
+      "username": "TestUser2",
+      "passHash": "fbfb386efea67e816f2dda0a8c94a98eb203757aebb3f55f183755a192d44467",
+      "email": "a@a.com",
+      "profileImage": "default-profile-picture.svg",
+      "usernameLower": "testuser2",
+      "id": "9f495664-4ecf-4bc2-96c4-d619a72aef80"
+    },
+    {
+      "username": "TestUser3",
+      "passHash": "fbfb386efea67e816f2dda0a8c94a98eb203757aebb3f55f183755a192d44467",
+      "email": "a@b.bg",
+      "profileImage": "default-profile-picture.svg",
+      "usernameLower": "testuser3",
+      "id": "2cd547cd-d21e-4160-b3fa-5b32e3a2d8f2",
+      "authKey": null
     }
   ],
   "feedback": [
