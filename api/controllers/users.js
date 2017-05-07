@@ -14,7 +14,7 @@ module.exports = (db) => {
     let duplicateUser = db("users").find({
       usernameLower: reqUser.username.toLowerCase()
     });
-    
+
     if (duplicateUser) {
       return res.status(409)
         .send('Duplicated user');
@@ -67,7 +67,7 @@ module.exports = (db) => {
       return res.status(422)
         .send("Invalid credentials.");
     }
-    
+
     user.authKey = null;
 
     return res.status(200).send();

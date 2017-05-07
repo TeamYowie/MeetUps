@@ -11,9 +11,9 @@ module.exports = () => {
       authKey += chars[index];
     }
     return authKey;
-  }
+  };
 
   return {
     get
-  }
-}
+  };
+};
