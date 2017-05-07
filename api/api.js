@@ -22,6 +22,7 @@ api.post("/api/logout", usersController.logout);
 api.post("/api/users", usersController.post);
 
 api.get("/api/feedback", feedbackController.get);
+api.post("/api/feedback", feedbackController.post);
 
 
 let port = process.env.PORT || 3000;

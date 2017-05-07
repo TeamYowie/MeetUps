@@ -6,30 +6,15 @@ module.exports = (db) => {
         });
     };
     const post = (req, res) => {
-        let reqUser = req.body;
-        if (!reqUser || typeof reqUser.username !== "string" || typeof reqUser.passHash !== "string") {
+        let reqFeedback = req.body;
+        if (!reqFeedback || typeof reqFeedback.name !== "string" || typeof reqFeedback.title !== "string" || typeof reqFeedback.message !== "string") {
             return res.status(422)
-                .send("Invalid username or password");
+                .send("Invalid Post");
         }
 
-        let duplicateUser = db("users").find({
-            usernameLower: reqUser.username.toLowerCase()
-        });
+        db("feedback").insert(reqFeedback);
 
-        if (duplicateUser) {
-            return res.status(409)
-                .send('Duplicated user');
-        }
-
-        reqUser.usernameLower = reqUser.username.toLowerCase();
-        reqUser.id = idGenerator.get();
-        db("users").insert(reqUser);
-
-        return res.status(201).send({
-            result: {
-                username: reqUser.username,
-            }
-        });
+        return res.status(201).send();
     };
 
     return {
