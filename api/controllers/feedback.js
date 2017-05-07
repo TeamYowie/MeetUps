@@ -19,14 +19,19 @@ module.exports = (db) => {
     };
 
     const put = (req, res) => {
-        let id = req.params.id;
+        let id = req.params.id,
+            feedbacks = db("feedback");
 
-        db.get(`feedback[${id}]`)
-            .remove()
-            .write();
+        if (!feedbacks[id]) {
+            res.status(422)
+            .send("Invalid Operation");
+        }
 
-        return res.status(201).send();
+        el = feedbacks.splice(id, 1);
 
+        return res.status(201).send({
+            deleted: el
+        });
     };
 
     return {
