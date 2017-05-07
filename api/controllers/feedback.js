@@ -5,6 +5,7 @@ module.exports = (db) => {
             result: feedback
         });
     };
+
     const post = (req, res) => {
         let reqFeedback = req.body;
         if (!reqFeedback || typeof reqFeedback.name !== "string" || typeof reqFeedback.title !== "string" || typeof reqFeedback.message !== "string") {
@@ -17,8 +18,20 @@ module.exports = (db) => {
         return res.status(201).send();
     };
 
+    const put = (req, res) => {
+        let id = req.params.id;
+
+        db.get(`feedback[${id}]`)
+            .remove()
+            .write();
+
+        return res.status(201).send();
+
+    };
+
     return {
         get,
-        post
+        post,
+        put
     };
 };

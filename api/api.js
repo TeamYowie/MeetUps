@@ -23,7 +23,7 @@ api.post("/api/users", usersController.post);
 
 api.get("/api/feedback", feedbackController.get);
 api.post("/api/feedback", feedbackController.post);
-
+api.put("/api/feedback/:id", feedbackController.put);
 
 let port = process.env.PORT || 3000;
 
