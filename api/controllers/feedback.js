@@ -22,12 +22,12 @@ module.exports = (db) => {
         let id = req.params.id,
             feedbacks = db("feedback");
 
-        if (!feedbacks[id]) {
+        if (!feedbacks) {
             res.status(422)
             .send("Invalid Operation");
         }
 
-        el = feedbacks.splice(id, 1);
+        let el = feedbacks.splice(id, 1);
 
         return res.status(201).send({
             deleted: el
