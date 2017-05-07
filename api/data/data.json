@@ -7,5 +7,17 @@
       "authKey": "undefined+tusvd@Kh_@ixbA*Q$fvLmq(CJJmu*DN%E^i@OUr&eoAJn!*uak",
       "id": "d69707b4-d06d-42ac-bc10-1dde5aaafcf7"
     }
+  ],
+  "feedback": [
+    {
+      "name": "Awesome",
+      "title": "Best Meetup Ever",
+      "message": "I really love this meetup. Please don't let it end."
+    },
+    {
+      "name": "Jane",
+      "title": "Meeting Time",
+      "message": "Would you consider moving the meeting time 30 minutes to about 6pm. It's tough to make it to the meetings on time right after work."
+    }
   ]
 }

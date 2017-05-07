@@ -3,7 +3,7 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   lowdb = require("lowdb");
 
-let db = lowdb("./data/data.json");
+let db = lowdb("./api/data/data.json");
 db._.mixin(require("underscore-db"));
 
 let api = express();
@@ -15,10 +15,13 @@ api.get("/", function(request, response){
 });
 
 let usersController = require("./controllers/users")(db);
+let feedbackController = require("./controllers/feedback")(db);
 
 api.post("/api/auth", usersController.auth);
 api.post("/api/logout", usersController.logout);
 api.post("/api/users", usersController.post);
+
+api.get("/api/feedback", feedbackController.get);
 
 
 let port = process.env.PORT || 3000;
