@@ -15,13 +15,13 @@ api.get("/", function (request, response) {
   response.send("Welcome to the API!");
 });
 
-let usersController = require("./controllers/users")(db);
+let userController = require("./controllers/user")(db);
 let feedbackController = require("./controllers/feedback")(db);
 
-api.post("/api/auth", usersController.auth);
-api.post("/api/logout", usersController.logout);
-api.post("/api/users", usersController.post);
-api.get("/api/user/:id", usersController.get);
+api.post("/api/auth", userController.auth);
+api.post("/api/logout", userController.logout);
+api.post("/api/users", userController.post);
+api.get("/api/user/:id", userController.get);
 
 api.get("/api/feedback", feedbackController.get);
 api.post("/api/feedback", feedbackController.post);
