@@ -30,20 +30,20 @@ api.post("/api/feedback", feedbackController.post);
 api.put("/api/feedback/:id", feedbackController.put);
 
 
-let port = process.env.PORT || 3000;
+// let port = process.env.PORT || 3000;
 
-let server = api.listen(port, function () {
-  console.log("Server is running at http://localhost:" + port);
-});
+// let server = api.listen(port, function () {
+//   console.log("Server is running at http://localhost:" + port);
+// });
 
-let chatController = require("./controllers/chat")(server);
+let chatController = require("./controllers/chat")(http);
 
 api.get("/api/chat", chatController.get);
 
-io.attach(server);
+io.attach(http);
 
 io.on("connection", (socket) => {
-  console.log("user connected")
+  console.log("user connected");
 });
 
 io.on("disconnect", (socket) => {
