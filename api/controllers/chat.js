@@ -2,7 +2,7 @@ let io = require("socket.io")();
 
 module.exports = (server) => {
     const get = (req, res) => {
-        console.log(req);
+        console.log("I am in chat get");
     };
 
     const setup = () => {

@@ -33,6 +33,10 @@ let server = api.listen(port, function () {
   console.log("Server is running at http://localhost:" + port);
 });
 
+let chatController = require("./controllers/chat")(server);
+
+api.get("/api/chat", chatController.get);
+
 io.attach(server);
 
 io.on("connection", (socket) => {
@@ -42,5 +46,4 @@ io.on("connection", (socket) => {
 io.on("disconnect", (socket) => {
   console.log("user disconnected");
 });
-// let chatController = require("./controllers/chat")(server);
-// api.get("/api/chat", chatController.setup);
+
