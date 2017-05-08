@@ -26,12 +26,10 @@ module.exports = (db) => {
             res.status(422)
             .send("Invalid Operation");
         }
+        
+        feedbacks.splice(id, 1);
 
-        let el = feedbacks.splice(id, 1);
-
-        return res.status(201).send({
-            deleted: el
-        });
+        return res.status(201).send();
     };
 
     return {

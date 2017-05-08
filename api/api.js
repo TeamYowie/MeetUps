@@ -1,7 +1,7 @@
 "use strict";
 const express = require("express"),
   bodyParser = require("body-parser"),
-  lowdb = require("lowdb");
+  lowdb = require("lowdb")
 
 let db = lowdb("./data/data.json");
 db._.mixin(require("underscore-db"));
@@ -10,7 +10,7 @@ let api = express();
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: false }));
 
-api.get("/", function(request, response){
+api.get("/", function (request, response) {
   response.send("Welcome to the API!");
 });
 
@@ -25,8 +25,13 @@ api.get("/api/feedback", feedbackController.get);
 api.post("/api/feedback", feedbackController.post);
 api.put("/api/feedback/:id", feedbackController.put);
 
+
 let port = process.env.PORT || 3000;
 
-api.listen(port, function() {
+let server = api.listen(port, function () {
   console.log("Server is running at http://localhost:" + port);
 });
+
+let chatController = require("./controllers/chat")(server);
+
+api.get("/api/chat", chatController.get);
