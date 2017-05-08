@@ -7,9 +7,6 @@ let db = lowdb("./data/data.json");
 db._.mixin(require("underscore-db"));
 
 let api = express();
-let http = require("http").createServer(api);
-let io = require("socket.io")(http);
-http.listen(8080, "127.0.0.1");
 
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: false }));
@@ -30,17 +27,19 @@ api.post("/api/feedback", feedbackController.post);
 api.put("/api/feedback/:id", feedbackController.put);
 
 
-// let port = process.env.PORT || 3000;
+let port = process.env.PORT || 3000;
 
-// let server = api.listen(port, function () {
-//   console.log("Server is running at http://localhost:" + port);
-// });
+let server = api.listen(port, function () {
+  console.log("Server is running at http://localhost:" + port);
+});
 
-let chatController = require("./controllers/chat")(http);
+let io = require("socket.io")(server);
+
+let chatController = require("./controllers/chat")(server);
 
 api.get("/api/chat", chatController.get);
 
-io.attach(http);
+io.attach(server);
 
 io.on("connection", (socket) => {
   console.log("user connected");
@@ -49,4 +48,3 @@ io.on("connection", (socket) => {
 io.on("disconnect", (socket) => {
   console.log("user disconnected");
 });
-
