@@ -4,6 +4,29 @@ const authKeyGenerator = require("./../utils/auth-key-generator")();
 const idGenerator = require("./../utils/id-generator")();
 
 module.exports = (db) => {
+  const get = (req, res) => {
+    let reqUserId = req.params.id;
+    let authKey = req.headers[AUTH_KEY_HEADER_NAME];
+
+    let user = db("users").find({
+      id: reqUserId
+    });
+
+    if (!user || user.authKey !== authKey) {
+      return res.status(422)
+        .send("Invalid credentials.");
+    }
+
+    return res.status(200)
+      .send({
+        result: {
+          username: user.username,
+          email: user.email,
+          profileImage: user.profileImage
+        }
+    });
+  };
+
   const post = (req, res) => {
     let reqUser = req.body;
     if (!reqUser || typeof reqUser.username !== "string" || typeof reqUser.passHash !== "string") {
@@ -56,11 +79,11 @@ module.exports = (db) => {
   };
 
   const logout = (req, res) => {
-    let reqUser = req.body;
+    let reqUserId = req.body.id;
     let authKey = req.headers[AUTH_KEY_HEADER_NAME];
 
     let user = db("users").find({
-      id: reqUser.id
+      id: reqUserId
     });
 
     if (!user || user.authKey !== authKey) {
@@ -75,6 +98,7 @@ module.exports = (db) => {
   };
 
   return {
+    get,
     post,
     auth,
     logout
