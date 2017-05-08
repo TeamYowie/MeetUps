@@ -1,13 +1,16 @@
 "use strict";
 const express = require("express"),
   bodyParser = require("body-parser"),
-  lowdb = require("lowdb"),
-  io = require("socket.io")();
+  lowdb = require("lowdb");
 
 let db = lowdb("./data/data.json");
 db._.mixin(require("underscore-db"));
 
 let api = express();
+let http = require("http").createServer(api);
+let io = require("socket.io")(http);
+http.listen(8080, "127.0.0.1");
+
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: false }));
 
