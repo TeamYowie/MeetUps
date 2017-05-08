@@ -12,6 +12,14 @@ let api = express();
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: false }));
 
+
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT");
+    res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+    next();
+  }
+);
+
 api.get("/", function (request, response) {
   response.send("Welcome to the API!");
 });
