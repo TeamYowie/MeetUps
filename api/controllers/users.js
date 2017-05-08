@@ -44,12 +44,13 @@ module.exports = (db) => {
       user.authKey = authKeyGenerator.get(user.id);
     }
 
-    return res.status(200).send({
-      result: {
-        username: user.username,
-        authKey: user.authKey,
-        profileImage: user.profileImage
-      }
+    return res.status(200)
+      .send({
+        result: {
+          id: user.id,
+          authKey: user.authKey,
+          profileImage: user.profileImage
+        }
     });
   };
 
@@ -58,7 +59,7 @@ module.exports = (db) => {
     let authKey = req.headers[AUTH_KEY_HEADER_NAME];
 
     let user = db("users").find({
-      usernameLower: reqUser.username.toLowerCase()
+      id: reqUser.id
     });
 
     if (!user || user.authKey !== authKey) {
@@ -68,7 +69,8 @@ module.exports = (db) => {
 
     user.authKey = null;
 
-    return res.status(200).send();
+    return res.status(200)
+      .send();
   };
 
   return {
