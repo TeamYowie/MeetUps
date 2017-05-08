@@ -12,7 +12,9 @@ let api = express();
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: false }));
 
+api.disable("x-powered-by");
 
+api.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT");
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
