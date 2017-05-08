@@ -1,7 +1,8 @@
 "use strict";
 const express = require("express"),
   bodyParser = require("body-parser"),
-  lowdb = require("lowdb");
+  lowdb = require("lowdb"),
+  io = require("socket.io")();
 
 let db = lowdb("./data/data.json");
 db._.mixin(require("underscore-db"));
@@ -31,6 +32,13 @@ api.put("/api/feedback/:id", feedbackController.put);
 
 let port = process.env.PORT || 3000;
 
-api.listen(port, function () {
+const server = api.listen(port, (socket) => {
   console.log("Server is running at http://localhost:" + port);
+});
+
+io.attach(server);
+io.on("connection", () => {
+  socket.on("postMessage", (data) => {
+    io.emit("updateMessages", data);
+  })
 });
