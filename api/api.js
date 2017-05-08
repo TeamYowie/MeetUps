@@ -21,6 +21,7 @@ let feedbackController = require("./controllers/feedback")(db);
 api.post("/api/auth", usersController.auth);
 api.post("/api/logout", usersController.logout);
 api.post("/api/users", usersController.post);
+api.get("/api/user/:id", usersController.get);
 
 api.get("/api/feedback", feedbackController.get);
 api.post("/api/feedback", feedbackController.post);
