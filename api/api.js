@@ -29,22 +29,6 @@ api.put("/api/feedback/:id", feedbackController.put);
 
 let port = process.env.PORT || 3000;
 
-let server = api.listen(port, function () {
+api.listen(port, function () {
   console.log("Server is running at http://localhost:" + port);
-});
-
-let io = require("socket.io")(server);
-
-let chatController = require("./controllers/chat")(server);
-
-api.get("/api/chat", chatController.get);
-
-io.attach(server);
-
-io.on("connection", (socket) => {
-  console.log("user connected");
-});
-
-io.on("disconnect", (socket) => {
-  console.log("user disconnected");
 });
