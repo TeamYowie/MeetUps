@@ -2,7 +2,7 @@
   "users": [
     {
       "username": "TestUser1",
-      "email": "2",
+      "email": "a@a.com",
       "passHash": "fbfb386efea67e816f2dda0a8c94a98eb203757aebb3f55f183755a192d44467",
       "profileImage": "default-profile-picture",
       "usernameLower": "testuser1",

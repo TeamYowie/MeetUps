@@ -65,6 +65,8 @@ module.exports = (db) => {
     return res.status(200)
       .send({
         result: {
+          firstname: user.firstname,
+          lastname: user.lastname,
           username: user.username,
           email: user.email,
           profileImage: user.profileImage
