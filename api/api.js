@@ -34,4 +34,4 @@ let server = api.listen(port, function () {
 
 let chatController = require("./controllers/chat")(server);
 
-api.get("/api/chat", chatController.get);
+api.get("/api/chat", chatController.setup);
