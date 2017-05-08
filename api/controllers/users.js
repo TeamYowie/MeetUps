@@ -48,6 +48,7 @@ module.exports = (db) => {
       .send({
         result: {
           id: user.id,
+          username: user.username,
           authKey: user.authKey,
           profileImage: user.profileImage
         }
