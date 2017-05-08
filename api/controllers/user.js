@@ -42,6 +42,7 @@ module.exports = (db) => {
     if (reqUserData.profileImage) {
       user.profileImage = reqUserData.profileImage;
     }
+    
     db.save();
 
     return res.status(200)
