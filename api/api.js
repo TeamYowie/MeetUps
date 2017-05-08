@@ -1,7 +1,8 @@
 "use strict";
 const express = require("express"),
   bodyParser = require("body-parser"),
-  lowdb = require("lowdb")
+  lowdb = require("lowdb"),
+  io = require("socket.io")();
 
 let db = lowdb("./data/data.json");
 db._.mixin(require("underscore-db"));
@@ -32,6 +33,14 @@ let server = api.listen(port, function () {
   console.log("Server is running at http://localhost:" + port);
 });
 
-let chatController = require("./controllers/chat")(server);
+io.attach(server);
 
-api.get("/api/chat", chatController.setup);
+io.on("connection", (socket) => {
+  console.log("user connected")
+});
+
+io.on("disconnect", (socket) => {
+  console.log("user disconnected");
+});
+// let chatController = require("./controllers/chat")(server);
+// api.get("/api/chat", chatController.setup);
