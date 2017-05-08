@@ -4,6 +4,50 @@ const authKeyGenerator = require("./../utils/auth-key-generator")();
 const idGenerator = require("./../utils/id-generator")();
 
 module.exports = (db) => {
+  const put = (req, res) => {
+    let reqUserId = req.params.id;
+    let reqUserData = req.body;
+    let authKey = req.headers[AUTH_KEY_HEADER_NAME];
+
+    if (!reqUserId) {
+      return res.status(422)
+        .send("Invalid new data!");
+    }
+
+    let user = db("users").find({
+      id: reqUserId
+    });
+
+    if (!user || user.passHash !== reqUserData.passHash || user.authKey !== authKey) {
+      return res.status(422)
+        .send("Invalid credentials!");
+    }
+
+    if (reqUserData.firstname) {
+      user.firstname = reqUserData.firstname;
+    }
+
+    if (reqUserData.lastname) {
+      user.lastname = reqUserData.lastname;
+    }
+
+    if (reqUserData.email) {
+      user.email = reqUserData.email;
+    }
+
+    if (reqUserData.newPassHash) {
+      user.passHash = reqUserData.newPassHash;
+    }
+    
+    if (reqUserData.profileImage) {
+      user.profileImage = reqUserData.profileImage;
+    }
+    db.save();
+
+    return res.status(200)
+      .send("User updated!");
+  };
+
   const get = (req, res) => {
     let reqUserId = req.params.id;
     let authKey = req.headers[AUTH_KEY_HEADER_NAME];
@@ -65,6 +109,7 @@ module.exports = (db) => {
 
     if (!user.authKey) {
       user.authKey = authKeyGenerator.get(user.id);
+      db.save()
     }
 
     return res.status(200)
@@ -92,12 +137,14 @@ module.exports = (db) => {
     }
 
     user.authKey = null;
+    db.save()
 
     return res.status(200)
       .send();
   };
 
   return {
+    put,
     get,
     post,
     auth,

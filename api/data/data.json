@@ -2,18 +2,17 @@
   "users": [
     {
       "username": "TestUser1",
+      "email": "2",
       "passHash": "fbfb386efea67e816f2dda0a8c94a98eb203757aebb3f55f183755a192d44467",
-      "email": "a@a.com",
-      "profileImage": "default-profile-picture.svg",
+      "profileImage": "default-profile-picture",
       "usernameLower": "testuser1",
       "id": "d69707b4-d06d-42ac-bc10-1dde5aaafcf7",
       "authKey": null
     },
     {
       "username": "TestUser2",
-      "passHash": "fbfb386efea67e816f2dda0a8c94a98eb203757aebb3f55f183755a192d44467",
       "email": "a@a.com",
-      "profileImage": "default-profile-picture.svg",
+      "profileImage": "default-profile-picture",
       "usernameLower": "testuser2",
       "id": "9f495664-4ecf-4bc2-96c4-d619a72aef80"
     },
@@ -21,7 +20,7 @@
       "username": "TestUser3",
       "passHash": "fbfb386efea67e816f2dda0a8c94a98eb203757aebb3f55f183755a192d44467",
       "email": "a@b.bg",
-      "profileImage": "default-profile-picture.svg",
+      "profileImage": "default-profile-picture",
       "usernameLower": "testuser3",
       "id": "2cd547cd-d21e-4160-b3fa-5b32e3a2d8f2",
       "authKey": null
