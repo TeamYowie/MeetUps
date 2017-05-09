@@ -3,7 +3,7 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   lowdb = require("lowdb"),
   io = require("socket.io")(),
-  cors = require("cors")();
+  cors = require("cors");
 
 let db = lowdb("./data/data.json");
 db._.mixin(require("underscore-db"));
