@@ -38,11 +38,11 @@ module.exports = (db) => {
     if (reqUserData.newPassHash) {
       user.passHash = reqUserData.newPassHash;
     }
-    
+
     if (reqUserData.profileImage) {
       user.profileImage = reqUserData.profileImage;
     }
-    
+
     db.save();
 
     return res.status(200)
@@ -71,7 +71,7 @@ module.exports = (db) => {
           email: user.email,
           profileImage: user.profileImage
         }
-    });
+      });
   };
 
   const post = (req, res) => {
@@ -123,7 +123,7 @@ module.exports = (db) => {
           authKey: user.authKey,
           profileImage: user.profileImage
         }
-    });
+      });
   };
 
   const logout = (req, res) => {
@@ -147,7 +147,21 @@ module.exports = (db) => {
   };
 
   const all = (req, res) => {
-    
+    let reqUserId = req.id;
+    let authKey = req.headers[AUTH_KEY_HEADER_NAME];
+    console.log(reqUserId);
+    let user = db("users").find({
+      id: reqUserId
+    });
+
+    if (!user || user.authKey !== authKey) {
+      return res.status(422)
+        .send("Invalid credentials.");
+    }
+
+    let users = db("users");
+
+    return res.status(200).send(users);
   }
 
   return {

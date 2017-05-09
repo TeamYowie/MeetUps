@@ -2,8 +2,20 @@ const AUTH_KEY_HEADER_NAME = "x-auth-key";
 
 module.exports = (db) => {
     const get = (req, res) => {
+        let reqUserId = req.id;
+        let authKey = req.headers[AUTH_KEY_HEADER_NAME];
+        console.log(reqUserId);
+        let user = db("users").find({
+            id: reqUserId
+        });
+
+        if (!user || user.authKey !== authKey) {
+            return res.status(422)
+                .send("Invalid credentials.");
+        }
+
         let feedback = db("feedback");
-        res.status(201).send({
+        res.status(200).send({
             result: feedback
         });
     };
@@ -29,7 +41,7 @@ module.exports = (db) => {
 
         db("feedback").insert(reqFeedback);
 
-        return res.status(201).send();
+        return res.status(200).send();
     };
 
     const put = (req, res) => {
@@ -55,7 +67,7 @@ module.exports = (db) => {
 
         feedbacks.splice(feedbackId, 1);
 
-        return res.status(201).send();
+        return res.status(200).send();
     };
 
     return {
