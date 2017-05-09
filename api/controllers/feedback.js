@@ -1,3 +1,5 @@
+const AUTH_KEY_HEADER_NAME = "x-auth-key";
+
 module.exports = (db) => {
     const get = (req, res) => {
         let feedback = db("feedback");
@@ -18,7 +20,7 @@ module.exports = (db) => {
             return res.status(422)
                 .send("Invalid credentials.");
         }
-        
+
         let reqFeedback = req.body.feedback;
         if (!reqFeedback || typeof reqFeedback.name !== "string" || typeof reqFeedback.title !== "string" || typeof reqFeedback.message !== "string") {
             return res.status(422)
