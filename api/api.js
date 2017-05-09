@@ -2,7 +2,8 @@
 const express = require("express"),
   bodyParser = require("body-parser"),
   lowdb = require("lowdb"),
-  io = require("socket.io")();
+  io = require("socket.io")(),
+  cors = require("cors")();
 
 let db = lowdb("./data/data.json");
 db._.mixin(require("underscore-db"));
@@ -11,6 +12,7 @@ let api = express();
 
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: false }));
+api.use(cors());
 
 api.get("/", function (request, response) {
   response.send("Welcome to the API!");
