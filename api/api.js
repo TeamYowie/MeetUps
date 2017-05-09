@@ -32,14 +32,14 @@ api.put("/api/feedback/:id", feedbackController.put);
 
 let port = process.env.PORT || 3000;
 
-const server = api.listen(port, (socket) => {
+const server = api.listen(port, () => {
   console.log("Server is running at http://localhost:" + port);
 });
 
 io.attach(server);
-io.set("origins", "http://127.0.0.1:8080");
-io.on("connection", () => {
+io.on("connection", (socket) => {
   socket.on("postMessage", (data) => {
+    console.log("y");
     io.emit("updateMessages", data);
   })
 });
