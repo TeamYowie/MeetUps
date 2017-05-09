@@ -7,7 +7,19 @@ module.exports = (db) => {
     };
 
     const post = (req, res) => {
-        let reqFeedback = req.body;
+        let reqUserId = req.body.id;
+        let authKey = req.headers[AUTH_KEY_HEADER_NAME];
+
+        let user = db("users").find({
+            id: reqUserId
+        });
+
+        if (!user || user.authKey !== authKey) {
+            return res.status(422)
+                .send("Invalid credentials.");
+        }
+        
+        let reqFeedback = req.body.feedback;
         if (!reqFeedback || typeof reqFeedback.name !== "string" || typeof reqFeedback.title !== "string" || typeof reqFeedback.message !== "string") {
             return res.status(422)
                 .send("Invalid Post");
@@ -19,15 +31,27 @@ module.exports = (db) => {
     };
 
     const put = (req, res) => {
-        let id = req.params.id,
+        let reqUserId = req.body.id;
+        let authKey = req.headers[AUTH_KEY_HEADER_NAME];
+
+        let user = db("users").find({
+            id: reqUserId
+        });
+
+        if (!user || user.authKey !== authKey) {
+            return res.status(422)
+                .send("Invalid credentials.");
+        }
+
+        let feedbackId = req.params.id,
             feedbacks = db("feedback");
 
         if (!feedbacks) {
             res.status(422)
-            .send("Invalid Operation");
+                .send("Invalid Operation");
         }
-        
-        feedbacks.splice(id, 1);
+
+        feedbacks.splice(feedbackId, 1);
 
         return res.status(201).send();
     };

@@ -140,17 +140,22 @@ module.exports = (db) => {
     }
 
     user.authKey = null;
-    db.save()
+    db.save();
 
     return res.status(200)
       .send();
   };
+
+  const all = (req, res) => {
+    
+  }
 
   return {
     put,
     get,
     post,
     auth,
-    logout
+    logout,
+    all
   };
 };
