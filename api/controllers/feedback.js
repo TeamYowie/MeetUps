@@ -2,14 +2,12 @@ const AUTH_KEY_HEADER_NAME = "x-auth-key";
 
 module.exports = (db) => {
     const get = (req, res) => {
-        let reqUserId = req.options.id;
-        let authKey = req.headers[AUTH_KEY_HEADER_NAME];
-        console.log(reqUserId);
+        let reqAuthKey = req.headers[AUTH_KEY_HEADER_NAME];
         let user = db("users").find({
-            id: reqUserId
+            authKey: reqAuthKey
         });
 
-        if (!user || user.authKey !== authKey) {
+        if (!user) {
             return res.status(422)
                 .send("Invalid credentials.");
         }
