@@ -2,7 +2,7 @@
 const express = require("express"),
   bodyParser = require("body-parser"),
   lowdb = require("lowdb"),
-  io = require("socket.io")({origins: "http://127.0.0.1:8080"});
+  io = require("socket.io")();
 
 let db = lowdb("./data/data.json");
 db._.mixin(require("underscore-db"));
@@ -39,7 +39,6 @@ const server = api.listen(port, () => {
 io.attach(server);
 io.on("connection", (socket) => {
   socket.on("postMessage", (data) => {
-    console.log("y");
     io.emit("updateMessages", data);
   })
 });
