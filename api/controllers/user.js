@@ -147,7 +147,7 @@ module.exports = (db) => {
   };
 
   const all = (req, res) => {
-    let reqUserId = req.id;
+    let reqUserId = req.options.id;
     let authKey = req.headers[AUTH_KEY_HEADER_NAME];
     console.log(reqUserId);
     let user = db("users").find({
