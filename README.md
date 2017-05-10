@@ -8,16 +8,15 @@
 https://github.com/TelerikAcademy/JavaScript-Applications/blob/master/Teamwork/README.md
 
 ## Project Demo
-- [**Live Preview**]
-- [**Video Preview**]
-- [**Telerik Academy Showcase System**]
+- [**Live Preview**](http://cdn.rawgit.com/TeamYowie/MeetUps-WebApp/master/app/#)
+- [**Video Preview**](https://youtu.be/Bzu__NpdhiM)
+- [**Telerik Academy Showcase System**](http://best.telerikacademy.com/projects/645/Team-Yowie-s-Meet-Ups)
  
 ### API Description
  **This part of the Meet Ups! project provides the public API through specific endpoints.**
  
 ### API Azure back-end panel
-- [Overview]
-- [Deployment]
+- [Overview](http://res.cloudinary.com/teamyowie/image/upload/v1494425936/azure_hwnrze.png)
 
 #### API Technology Stack
 **Technologies**
