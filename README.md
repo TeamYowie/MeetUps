@@ -8,9 +8,9 @@
 https://github.com/TelerikAcademy/JavaScript-Applications/blob/master/Teamwork/README.md
 
 ## Project Demo
-- [**Live Preview**](https://rawgit.com/FrenchMartiniTM/AttackOfTheViciousFrenchMartinis/master/index.html)
-- [**Video Preview**](https://youtu.be/MDx99Mb4ZAk)
-- [**Telerik Academy Showcase System**](http://best.telerikacademy.com/projects/575/Attack-Of-The-Vicious-French-Martinis)
+- [**Live Preview**]
+- [**Video Preview**]
+- [**Telerik Academy Showcase System**]
  
 ### API Description
  **This part of the Meet Ups! project provides the public API through specific endpoints.**
