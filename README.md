@@ -2,9 +2,9 @@
 **A teamwork project developed by team "Yowie" for the JavaScript Applications course of the Telerik Academy Season 8(2016-2017).**
 
 ## Project Description
- **The project is an online dating website where you can create your own user profile, browse through all profiles and connect to a live chat room.**
+ **The project is an online dating website where you can create your own user profile, browse through all profiles, connect to a live chat room and post feedback.**
  
- ## Project requirements
+## Project requirements
 https://github.com/TelerikAcademy/JavaScript-Applications/blob/master/Teamwork/README.md
 
 ## Project Demo
@@ -19,12 +19,14 @@ https://github.com/TelerikAcademy/JavaScript-Applications/blob/master/Teamwork/R
 - [Overview]
 - [Deployment]
 
-### API Technology Stack
+#### API Technology Stack
 **Technologies**
 * JavaScript
 * EcmaScript 6
 * Node.js (Express.js)
 * Socket.io
-
-**Database**
 * LowDB
+
+**Tools**
+* Git (GitHub)
+* Node Package Manager
